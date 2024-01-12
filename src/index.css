@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Open+Sans&display=swap');
+
+:root {
+
+    --main-color: rgb(0, 81, 255);
+    --dark-color: rgba(2,0,36,1);
+    --hover-color: rgba(9,9,121,1);
+}
+.feature-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: .75rem;
+}
+
+.icon-square {
+    width: 3rem;
+    height: 3rem;
+    border-radius: .75rem;
+}
+
+.text-shadow-1 {
+    text-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25);
+}
+
+.text-shadow-2 {
+    text-shadow: 0 .25rem .5rem rgba(0, 0, 0, .25);
+}
+
+.text-shadow-3 {
+    text-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .25);
+}
+
+.card-cover {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.feature-icon-small {
+    width: 3rem;
+    height: 3rem;
+}
+
+#custom-cards>div {
+    padding: 10px;
+    margin-top: 5px;
+
+}
+
+#custom-cards {
+    padding: 10px;
+    margin-top: 5px;
+
+}
+.flex-column {
+    height: 300px;
+}
+div.col > a{
+    text-decoration: none;
+}
+
+button{
+    border: none;
+    background-color: #0e0f11;
+    color: white;
+}
+
+button:hover{
+    border: none;
+    background: rgb(63,94,251);
+    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    color: #000000;
+}
+header{
+    background-color: #0e0f11;
+}
+footer{
+    background-color: #0e0f11;
+}
+#root > header > div > div > ul > li > a > h2:hover{
+    color: var(--main-color);
+}
+#root{
+    display: flex;
+    flex-direction: column;
+}
+
+tr>td{
+    border-width: 1px;
+    font-family: 'JetBrains Mono', 'Ubuntu', sans-serif;
+    text-align: center;
+
+}
+.col,.container,footer,main{
+}
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+#root{
+    min-height: 100vh;
+}
+body {
+    font-family: 'JetBrains Mono', 'Ubuntu', sans-serif;
+    min-height: 100vh;
+}
+
+html {
+    min-height: 100vh;
+}
+
+main {
+
+    height: -webkit-fill-available;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.dropdown-toggle {
+    outline: 0;
+}
+
+.btn-toggle, .btn-padding {
+    font-size: 24px;
+    width: 100%;
+    padding: .25rem .5rem;
+    font-weight: 600;
+    color: var(--bs-emphasis-color);
+    background-color: transparent;
+}
+
+.btn-padding:hover, .btn-toggle:hover {
+    color: white;
+    background: var(--hover-color);
+
+    /*background: linear-gradient(45deg, rgba(0,212,255,1) 13%, rgba(9,9,121,1) 58%, rgba(2,0,36,1) 100%);*/
+    /*background-color: rgb(46, 178, 0);*/
+}
+
+
+/*.btn-padding:hover,*/
+.btn-padding:focus {
+    color: white;
+    border: black 1px solid;
+    background: var(--dark-color);
+    /*background: linear-gradient(45deg, rgba(0,212,255,1) 13%, rgba(9,9,121,1) 58%, rgba(2,0,36,1) 100%);*/
+}
+
+.btn-toggle::before {
+    width: 1.25em;
+    line-height: 0;
+    content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+}
+
+
+.btn-toggle[aria-expanded="true"]::before {
+    transform: rotate(90deg);
+}
+
+.btn-toggle-nav a {
+    padding: .1875rem .5rem;
+    margin-top: .125rem;
+    margin-left: 1.25rem;
+}
+
+
+.scrollarea {
+    overflow-y: auto;
+}
+
+.btn-padding {
+    padding-left: 1.75em;
+}
