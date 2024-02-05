@@ -3,7 +3,6 @@ import Col from "./MainButton.jsx";
 import {Link} from "react-router-dom";
 
 
-
 export default class MainBody extends Component {
     render() {
         return (<div className="col">

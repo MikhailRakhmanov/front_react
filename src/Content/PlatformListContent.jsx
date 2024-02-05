@@ -53,7 +53,8 @@ class PlatformListContent extends Component {
         this.state = {
             platformList: [],
             platformData: [],
-            tableDataInRow : Math.floor(Math.sqrt(window.outerWidth/1200)*10)
+            tableDataInRow : Math.floor(Math.sqrt(window.outerWidth/1200)*10),
+
         }
 
 
@@ -70,7 +71,7 @@ class PlatformListContent extends Component {
                     {this.state.platformData.map(somePlatform =>
                         <tr  key={`ps${somePlatform[0].num}`}>{somePlatform.map(platform =>
                             <td className="platform-list noselect" key={`p${platform.num}`}  style={ platform.sospir === 1 ? {padding: 0,backgroundColor: `#BBFFBB`}:{padding: 0,backgroundColor: `#FFBBBB`}} >
-                                <a href={`/main/platform/${platform.num}`}>
+                                <a href={platform.sospir === 1?`/main/platform/${platform.num}`: `/main/platform/old/${platform.num}`}>
                                     <div  style={{width : `100%`,
                                             height : `100%`,
                                             padding:`8px`,

@@ -6,6 +6,7 @@ class PlatformContent extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             platformName: '',
             count: 0,
@@ -13,23 +14,44 @@ class PlatformContent extends Component {
             keys: [],
             products: []
         }
-        axios.get(`/api/table` + this.props.platformId).then((res) => {
 
-            let products = res.data.products;
-            if (res.data.platformName != null && products.length > 0)
+        axios.get(`/api/table/` + this.props.platformId.match(/\d+/g).pop()).then((res) => {
+            this.setState({
+                platformName: res.data.platformName,
+                count: res.data.count,
+                area: res.data.area,
+                products: res.data.products
+            })
+            if (res.data.products.length>0){
+
                 this.setState({
-                    platformName: res.data.platformName,
-                    count: res.data.count,
-                    area: res.data.area,
-                    keys: Object.keys(products[0]),
-                    products: res.data.products
+                    keys: Object.keys({
+                        "caption":"Наименование",
+                        "mark":"Маркировка",
+                        "numDog":"№ договора",
+                        "raz":"Размер",
+                        "client":"Клиент",
+                        "sm":"Площадь",
+                        "dts":"Старт",
+                        "dtf":"Финиш",
+                    })
                 })
+            }
         })
 
     }
 
     render() {
-        console.log(this.props.platformId)
+        let tableCaption = {
+            "caption":"Наименование",
+            "mark":"Маркировка",
+            "numDog":"№ договора",
+            "raz":"Размер",
+            "client":"Клиент",
+            "sm":"Площадь",
+            "dts":"Старт",
+            "dtf":"Финиш",
+        }
         if (window.outerWidth < 1200) {
             return <table className="table" style={{fontSize: `30px`, width: `100%`}}>
                 <thead className="table-dark">
@@ -64,12 +86,12 @@ class PlatformContent extends Component {
                             }}>{`Пирамида №${this.state.platformName}`}</h3></td>
                     </tr>
                     <tr key={`main`}>{this.state.keys.map(k =>
-                        <td key={`${k}`}><h4>{k}</h4></td>)}
+                        <td key={k}><h4>{tableCaption[k]}</h4></td>)}
                     </tr>
                     </thead>
                     <tbody>
                     {this.state.products.map(p => <tr key={p['MARK']}>{this.state.keys.map(k =>
-                        <td key={p['MARK']+p['caption']}>{p[k]}</td>)}</tr>)}
+                        <td key={p['MARK'] + p['caption']}>{p[k]}</td>)}</tr>)}
                     </tbody>
                 </table>
                 <table className="table">
