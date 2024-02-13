@@ -62,18 +62,22 @@ class PlatformScanContent extends Component {
                 <thead className="table-dark">
                 <tr>
                     <td colSpan="100%" style={{alignSelf: `center`}}><h3
-                        style={{textAlign: `center`, fontSize: `48px`}}>{`Пирамида №${this.state.platformName}`}</h3>
+                        style={{textAlign: `center`, fontSize: `72px`}}>{`Пирамида №${this.state.platformName}`}</h3>
                     </td>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td className="table-dark" style={{width: `30%`}}>Площадь</td>
-                    <td>{this.state.area}</td>
+                    <td className="table-dark" style={{width: `30%`, fontSize: `48px`}}>Площадь</td>
                 </tr>
                 <tr>
-                    <td className="table-dark" style={{width: `30%`}}>Кол-во</td>
-                    <td>{this.state.count}</td>
+                    <td style={{fontSize: `140px`,fontWeight: `bolder`}}>{this.state.area}</td>
+                </tr>
+                <tr>
+                    <td className="table-dark" style={{width: `30%`, fontSize: `48px`}}>Кол-во</td>
+                </tr>
+                <tr>
+                    <td style={{fontSize: `140px`,fontWeight: `bolder`}}>{this.state.count}</td>
                 </tr>
                 </tbody>
             </table>

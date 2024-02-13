@@ -5,7 +5,7 @@ export default class MainButton extends Component {
     render() {
         return <div className="col">
 
-            <button style={{
+            <button className={'my-button'} style={{
 
                 width: `100%`,
                 height: `100%`,

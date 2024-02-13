@@ -17,6 +17,7 @@ import DownloadContent from "./Content/DownloadContent.jsx";
 import PlatformScanContent from "./Content/PlatformScanContent.jsx";
 import PlatformContent from "./Content/PlatformContent.jsx";
 import OldPlatform from "./Content/OldPlatform.jsx";
+import Diction from "./Content/Diction.jsx";
 
 const toggleLeftBar = function (){
 
@@ -28,6 +29,8 @@ const toggleLeftBar = function (){
         document.querySelector('#root > main > div.flex-shrink-0').style.display = 'none';
     }
 }
+
+
 
 const router = createBrowserRouter(
     [
@@ -44,7 +47,9 @@ const router = createBrowserRouter(
 
                     <Outlet></Outlet>
 
+
                 </main>
+                <Footer/>
             </>,
             children: [
                 {
@@ -82,6 +87,7 @@ const router = createBrowserRouter(
                     <LeftBar isLeftBarVisible={false}></LeftBar>
                     <DeliveryContent></DeliveryContent>
                 </main>
+                <Footer/>
             </>
         },
         {
@@ -92,6 +98,7 @@ const router = createBrowserRouter(
                     <LeftBar isLeftBarVisible={false}></LeftBar>
                     <ImportContent></ImportContent>
                 </main>
+                <Footer/>
             </>
         },
         {
@@ -102,8 +109,15 @@ const router = createBrowserRouter(
                     <LeftBar isLeftBarVisible={false}></LeftBar>
                     <DownloadContent></DownloadContent>
                 </main>
+                <Footer/>
             </>
-        }
+        },
+        {
+            path: '/dict',
+            element: <>
+                <Diction></Diction>
+            </>
+        },
     ]
 )
 
@@ -113,6 +127,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <>
 
         <RouterProvider router={router}/>
-        <Footer/>
+
     </>
     /*</React.StrictMode>,*/)

@@ -23,7 +23,14 @@ export default class OldPlatform extends Component {
     }
 
     render() {
-        return <div>
+        if(this.state.strings.length===0){
+            return <h2 style={{width: `100%`, textAlign: `center`, marginTop:`23vh`}}>
+                <div className="spinner-border text-primary" style={{width : '3rem', height: '3rem'}} role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </h2>
+        }
+        return <div style={{width: `100%`, textAlign: `center`, marginTop:`23vh`}}>
             {this.state.strings.map(el=>
                 <div key={`d${el}`}><h2 key={`e${el}`}>{el}</h2></div>
             )}

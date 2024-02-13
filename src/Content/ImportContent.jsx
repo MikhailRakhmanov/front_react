@@ -15,10 +15,10 @@ class ImportContent extends Component {
                 "packet": "Пакет",
                 "kolvo": "Кол-во",
                 "idbrig": "Бригада",
+                "wdate": "Производство",
                 "dtp": "На завод",
                 "dot6": "Вывоз",
-                // "wdate": "",
-                // "idzmat": "",
+                "idzmat": "Hidden",
                 // "dotprn": "",
                 // "notes1": "",
                 // "fname": "",
@@ -151,7 +151,9 @@ class ImportContent extends Component {
     render() {
         if (this.state.importData.length < 1) {
             return <h2 style={{width: `100%`, textAlign: `center`, marginTop:`23vh`}}>
-                Загрузка
+                <div className="spinner-border text-primary" style={{width : '3rem', height: '3rem'}} role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
             </h2>
         }
         return (
@@ -163,14 +165,14 @@ class ImportContent extends Component {
                             <h3 style={{textAlign: 'center'}}>{`Импорт заказов`}</h3>
                         </td>
                     </tr>
-                    <tr key={`main`}>{Object.keys(this.state.tableCaption).map(k => <td key={k}>
-                        <h4>{this.state.tableCaption[k]}</h4></td>)}</tr>
+                    <tr key={`main`}>{Object.keys(this.state.tableCaption).map(k => k!=="idzmat"? <td key={k}>
+                        <h4>{this.state.tableCaption[k]}</h4></td>: <></>)}</tr>
                     </thead>
                     <tbody>
                     {this.state.importData.map(line => (
                         <tr key={line.num}>
                             {Object.keys(this.state.tableCaption).map(k => (
-                                <td className="noselect" key={`${k}${line[k]}`}>
+                                <td className="noselect" key={`${k}${line[k]}`} style={k!=="idzmat"? {}:{display:"none"}}>
                                     {line[k]}
                                 </td>
                             ))}
@@ -182,10 +184,17 @@ class ImportContent extends Component {
                     let importList = document.querySelectorAll('.checked');
                     let data = [];
                     importList.forEach(el=>{
-                       data.push(el.firstChild.innerText);
+                       data.push(el.lastChild.innerText);
                     })
                     console.log(data)
+                    axios.post(`/api/export`,data).then((res) => {
+                        console.log(res.status);
+                    });
                 }}>Импорт</button>
+                <div>
+                <a href="/downloads/import.xlsx" download>Скачать xlsx</a>
+
+                </div>
             </div>
         );
     }

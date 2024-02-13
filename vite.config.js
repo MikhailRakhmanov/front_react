@@ -8,7 +8,7 @@ export default defineConfig({
     port: 80,
     proxy: {
       "/api":"http://localhost:8080",
-      "/scan":"http://localhost:8080"
+      "/scan":"http://localhost:8080",
     }
   }
 })
