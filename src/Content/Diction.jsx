@@ -5,7 +5,7 @@ export default class Diction extends Component {
     componentDidMount() {
         this.interval = setInterval(() => {
 
-            axios.get(`/api/dict`).then((res) => {
+            axios.get(`/dict_api`).then((res) => {
                 res.data.forEach(el => {
                     el.dot1 = new Date(el.dot1).toLocaleDateString()
                     el.dot2 = new Date(el.dot2).toLocaleDateString()
@@ -44,7 +44,7 @@ export default class Diction extends Component {
         this.state = {
             tasks: []
         }
-        axios.get(`/api/dict`).then((res) => {
+        axios.get(`/dict_api`).then((res) => {
             res.data.forEach(el => {
                 el.dot1 = new Date(el.dot1).toLocaleDateString()
                 el.dot2 = new Date(el.dot2).toLocaleDateString()

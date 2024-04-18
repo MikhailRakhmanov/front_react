@@ -39,6 +39,7 @@ class PlatformListContent extends Component {
         let tableDataInRow = this.tableDataInRow();
         axios.get(`/api/tpir`).then((res) => {
             this.setState({platformList: res.data})
+            console.log(this.state.platformList)
             let a = []
             res.data.forEach((el, i) => {
 

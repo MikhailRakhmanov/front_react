@@ -11,7 +11,6 @@ class PlatformContent extends Component {
             platformName: '',
             count: 0,
             area: 0.0,
-            keys: [],
             products: []
         }
 
@@ -22,21 +21,6 @@ class PlatformContent extends Component {
                 area: res.data.area,
                 products: res.data.products
             })
-            if (res.data.products.length>0){
-
-                this.setState({
-                    keys: Object.keys({
-                        "caption":"Наименование",
-                        "mark":"Маркировка",
-                        "numDog":"№ договора",
-                        "raz":"Размер",
-                        "client":"Клиент",
-                        "sm":"Площадь",
-                        "dts":"Старт",
-                        "dtf":"Финиш",
-                    })
-                })
-            }
         })
 
     }
@@ -85,13 +69,13 @@ class PlatformContent extends Component {
                                 fontSize: `24px`
                             }}>{`Пирамида №${this.state.platformName}`}</h3></td>
                     </tr>
-                    <tr key={`main`}>{this.state.keys.map(k =>
+                    <tr key={`main`}>{Object.keys(tableCaption).map(k =>
                         <td key={k}><h4>{tableCaption[k]}</h4></td>)}
                     </tr>
                     </thead>
                     <tbody>
-                    {this.state.products.map(p => <tr key={p['MARK']}>{this.state.keys.map(k =>
-                        <td key={p['MARK'] + p['caption']}>{p[k]}</td>)}</tr>)}
+                    {this.state.products.map(p => <tr key={p['MARK']}>{Object.keys(tableCaption).map(k =>
+                        <td key={p['mark'] + p['caption']}>{p[k]}</td>)}</tr>)}
                     </tbody>
                 </table>
                 <table className="table">

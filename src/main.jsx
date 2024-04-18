@@ -36,7 +36,7 @@ const router = createBrowserRouter(
     [
         {
             path: '/',
-            element: (<><Header btn={false}/><MainBody/></>),
+            element: (<><Header btn={false}/><MainBody/><Footer/></>),
         },
         {
             path: '/main',
@@ -44,10 +44,7 @@ const router = createBrowserRouter(
                 <Header btn={true} toggleLeftBar={toggleLeftBar}/>
                 <main className="d-flex flex-nowrap">
                     <LeftBar isLeftBarVisible={false} ></LeftBar>
-
                     <Outlet></Outlet>
-
-
                 </main>
                 <Footer/>
             </>,

@@ -185,6 +185,7 @@ class ImportContent extends Component {
                     let data = [];
                     importList.forEach(el=>{
                        data.push(el.lastChild.innerText);
+                       el.style.display = 'none';
                     })
                     console.log(data)
                     axios.post(`/api/export`,data).then((res) => {

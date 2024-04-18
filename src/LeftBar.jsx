@@ -11,7 +11,7 @@ export default class LeftBar extends Component{
         return (
             <div className="flex-shrink-0" style={{ display: isLeftBarVisible ? 'block' : 'none' ,width: `280px`}}>
                 <ul className="list-unstyled ps-0">
-                    <li className="mb-1">
+                    <li className="mb-0 border-bottom">
                         <button
                             className="btn-toggle d-inline-flex align-items-center border-0 collapsed"
                             data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
@@ -19,21 +19,20 @@ export default class LeftBar extends Component{
                         </button>
                         <div className="collapse" id="home-collapse">
                             <ul className="btn-toggle-nav list-unstyled fw-normal small">
-                                <Link to={'/main/platform'} className="p-0 m-0"><SmallButton name={"Список"}></SmallButton></Link>
+                                <Link to={'/main/platform'} className="p-0 m-0 "><SmallButton name={"Список"}></SmallButton></Link>
                                 <Link to={'/main/platform/scan'} className="p-0 m-0"><SmallButton name={"Сканирование"}></SmallButton></Link>
                             </ul>
                         </div>
                     </li>
-                    <li className="mb-1">
+                    <li className="mb-0 border-bottom">
                         <Link to={'/main/delivery'}><BigButton name={'Доставка'}></BigButton></Link>
                     </li>
-                    <li className="mb-1">
+                    <li className="mb-0 border-bottom">
                         <Link to={'/main/import'}><BigButton name={'Импорт'}></BigButton></Link>
                     </li>
-                    <li className="mb-1">
+                    <li className="mb-0 border-bottom">
                         <Link to={'/main/download'}><BigButton name={'Загрузки'}></BigButton></Link>
                     </li>
-                    <li className="border-top my-3"></li>
                     {/*<li className="mb-1">*/}
                     {/*    <button*/}
                     {/*        className="btn-toggle d-inline-flex align-items-center border-0 collapsed"*/}

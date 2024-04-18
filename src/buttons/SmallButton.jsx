@@ -4,7 +4,7 @@ class SmallButton extends Component{
     render() {
         return (
             <li>
-                <button className=" btn-padding d-inline-flex align-items-center  border-0 collapsed"
+                <button className=" btn-padding d-inline-flex align-items-center border-top collapsed"
                         style={{paddingLeft: `70px`}}
                 onClick={this.props.action}>
                     {this.props.name}</button>
