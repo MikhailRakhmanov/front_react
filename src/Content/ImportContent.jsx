@@ -2,6 +2,26 @@ import {Component} from "react";
 import axios from "axios";
 
 class ImportContent extends Component {
+    componentDidMount() {
+        axios.get(`/api/import`).then((res) => {
+            this.setState({importData: res.data}, () => {
+                // Вызываем addSelectionListeners после успешного обновления состояния
+                this.addSelectionListeners();
+            });
+        });
+        this.interval = setInterval(() => {
+            axios.get(`/api/isImporting`).then((res) => {
+                this.setState({
+                    isImporting: res.data === true
+                })
+            })
+        }, 100);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
     constructor(props) {
         super(props);
 
@@ -9,7 +29,6 @@ class ImportContent extends Component {
             importData: [],
             keys: [],
             tableCaption: {
-                // "slc": "",
                 "num": "№",
                 "notes": "Особен",
                 "packet": "Пакет",
@@ -18,25 +37,11 @@ class ImportContent extends Component {
                 "wdate": "Производство",
                 "dtp": "На завод",
                 "dot6": "Вывоз",
-                "idzmat": "Hidden",
-                // "dotprn": "",
-                // "notes1": "",
-                // "fname": "",
-                // "vd": "",
-                // "parent": "",
-                // "manager": "",
+                "idzmat": "Hidden"
             }
         };
     }
 
-    componentDidMount() {
-        axios.get(`/api/import`).then((res) => {
-            this.setState({importData: res.data}, () => {
-                // Вызываем addSelectionListeners после успешного обновления состояния
-                this.addSelectionListeners();
-            });
-        });
-    }
 
     addSelectionListeners() {
         let isMousePressed = false;
@@ -150,8 +155,8 @@ class ImportContent extends Component {
 
     render() {
         if (this.state.importData.length < 1) {
-            return <h2 style={{width: `100%`, textAlign: `center`, marginTop:`23vh`}}>
-                <div className="spinner-border text-primary" style={{width : '3rem', height: '3rem'}} role="status">
+            return <h2 style={{width: `100%`, textAlign: `center`, marginTop: `23vh`}}>
+                <div className="spinner-border text-primary" style={{width: '3rem', height: '3rem'}} role="status">
                     <span className="visually-hidden">Loading...</span>
                 </div>
             </h2>
@@ -165,14 +170,15 @@ class ImportContent extends Component {
                             <h3 style={{textAlign: 'center'}}>{`Импорт заказов`}</h3>
                         </td>
                     </tr>
-                    <tr key={`main`}>{Object.keys(this.state.tableCaption).map(k => k!=="idzmat"? <td key={k}>
-                        <h4>{this.state.tableCaption[k]}</h4></td>: <></>)}</tr>
+                    <tr key={`main`}>{Object.keys(this.state.tableCaption).map(k => k !== "idzmat" ? <td key={k}>
+                        <h4>{this.state.tableCaption[k]}</h4></td> : <></>)}</tr>
                     </thead>
                     <tbody>
                     {this.state.importData.map(line => (
                         <tr key={line.num}>
                             {Object.keys(this.state.tableCaption).map(k => (
-                                <td className="noselect" key={`${k}${line[k]}`} style={k!=="idzmat"? {}:{display:"none"}}>
+                                <td className="noselect" key={`${k}${line[k]}`}
+                                    style={k !== "idzmat" ? {} : {display: "none"}}>
                                     {line[k]}
                                 </td>
                             ))}
@@ -180,21 +186,36 @@ class ImportContent extends Component {
                     ))}
                     </tbody>
                 </table>
-                <button onClick={()=>{
-                    let importList = document.querySelectorAll('.checked');
-                    let data = [];
-                    importList.forEach(el=>{
-                       data.push(el.lastChild.innerText);
-                       el.style.display = 'none';
-                    })
-                    console.log(data)
-                    axios.post(`/api/export`,data).then((res) => {
-                        console.log(res.status);
-                    });
-                }}>Импорт</button>
-                <div>
-                <a href="/downloads/import.xlsx" download>Скачать xlsx</a>
+                <div id="bottom-buttons">
+                    <button style={
+                        {
+                            width: "30vw",
+                            alignSelf: "center",
+                            height: "66px",
+                        }
+                    }
+                            onClick={() => {
 
+                                let importList = document.querySelectorAll('.checked');
+                                let data = [];
+                                importList.forEach(el => {
+                                    data.push(el.lastChild.innerText);
+                                    el.style.display = 'none';
+                                })
+                                console.log(data)
+                                axios.post(`/api/export`, data).then((res) => {
+                                    console.log(res.status);
+                                });
+                            }}>Импорт
+                    </button>
+                    <div id="excel" style={{
+                        display: this.state.isImporting ? 'none' : 'block',
+                        width: "30vw",
+                        alignSelf: "center",
+                        textAlign: "center"
+                    }}>
+                        {this.state.isImporting ? <></> : <a href="/downloads/import.xlsx" download>Скачать xlsx</a>}
+                    </div>
                 </div>
             </div>
         );
