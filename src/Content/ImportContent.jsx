@@ -208,15 +208,48 @@ class ImportContent extends Component {
                                 });
                             }}>Импорт
                     </button>
-                    <div id="excel" style={{
-                        display: this.state.isImporting ? 'none' : 'block',
-                        width: "30vw",
-                        alignSelf: "center",
-                        textAlign: "center"
-                    }}>
-                        {this.state.isImporting ? <></> : <a href="/downloads/import.xlsx" download>Скачать xlsx</a>}
-                    </div>
+                    {this.state.isImporting ?
+                        <div className="excel" style={{
+                            display: 'flex',
+                            width: "25vw",
+                            backgroundColor: "blue",
+                            height: "50px",
+                            alignSelf: "center",
+                            textAlign: "center",
+                            justifyContent: "center",
+                            margin: "5px",
+                            direction: "column",
+                            color: "white",
+                            alignItems: "center",
+                        }}>
+                            <div className="spinner-border text-primary" role="status">
+                            </div>
+                            <span>&nbsp;Loading...</span>
+                        </div> :
+                        <a href="/downloads/import.xlsx" download style={{
+                            display: 'flex',
+                            justifyContent: "center",
+                        }}>
+                            <div className="excel" style={{
+                                display: 'flex',
+                                width: "25vw",
+                                backgroundColor: "blue",
+                                height: "50px",
+                                alignSelf: "center",
+                                textAlign: "center",
+                                justifyContent: "center",
+                                margin: "5px",
+                                direction: "column",
+                                color: "white",
+                                alignItems: "center",
+                            }}>
+                                <span style={{}}>Скачать xlsx</span>
+                            </div>
+                        </a>
+                    }
+
                 </div>
+
             </div>
         );
     }
