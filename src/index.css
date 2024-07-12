@@ -181,3 +181,27 @@ main {
     justify-content: space-evenly;
     flex-direction: column;
 }
+
+.parent-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px; /* Высота контейнера */
+}
+
+.center-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 175px;
+    text-align: center;
+}
+
+.center-div a {
+    padding: 10px 20px; /* Внутренние отступы для ссылки */
+    text-decoration: none; /* Убрать подчеркивание ссылки */
+    color: black; /* Цвет текста */
+    background: linear-gradient(to right, #0064ff, red); /* Градиентный фон */
+    display: inline-block;
+}

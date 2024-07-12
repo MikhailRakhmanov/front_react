@@ -1,5 +1,6 @@
 import {Component} from "react";
 import axios from "axios"
+import {URL} from "../config.js";
 
 
 class PlatformContent extends Component {
@@ -27,14 +28,14 @@ class PlatformContent extends Component {
 
     render() {
         let tableCaption = {
-            "caption":"Наименование",
-            "mark":"Маркировка",
-            "numDog":"№ договора",
-            "raz":"Размер",
-            "client":"Клиент",
-            "sm":"Площадь",
-            "dts":"Старт",
-            "dtf":"Финиш",
+            "caption": "Наименование",
+            "mark": "Маркировка",
+            "numDog": "№ договора",
+            "raz": "Размер",
+            "client": "Клиент",
+            "sm": "Площадь",
+            "dts": "Старт",
+            "dtf": "Финиш",
         }
         if (window.outerWidth < 1200) {
             return <table className="table" style={{fontSize: `30px`, width: `100%`}}>
@@ -90,7 +91,11 @@ class PlatformContent extends Component {
                     </tr>
                     </tbody>
                 </table>
-
+                <div className="parent-container">
+                    <div className="center-div">
+                        <a href={`${URL}:8080/print/${this.state.platformName}`}>Печать</a>
+                    </div>
+                </div>
             </div>
         );
     }
